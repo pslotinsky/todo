@@ -1,0 +1,7 @@
+.b-todo-item {
+    cursor: pointer;
+}
+
+.b-todo-item_completed {
+    text-decoration: line-through;
+}

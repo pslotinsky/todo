@@ -1,0 +1,9 @@
+.b-filter {
+    display: inline-block;
+
+    cursor: pointer;
+}
+
+.b-filter_active {
+    cursor: default;
+}
