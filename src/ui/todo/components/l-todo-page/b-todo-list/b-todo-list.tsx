@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { TodoItem } from '../b-todo-item/b-todo-item';
+import { TYPE as ITEM_TYPE } from '../b-todo-item/b-todo-item';
+import { provideComponent, getComponent } from '../../../../../provide';
 
 export interface Props {
 	todos?: {
@@ -10,10 +11,13 @@ export interface Props {
 	onItemClick?: (id: string) => void;
 };
 
-export class TodoList extends React.Component<Props> {
-	public render(): JSX.Element {
-		let { todos, onItemClick } = this.props;
+const TYPE: symbol = Symbol('TodoList');
 
+@provideComponent(TYPE)
+class TodoList extends React.Component<Props> {
+	public render(): JSX.Element {
+		const TodoItem = getComponent(ITEM_TYPE);
+		let { todos, onItemClick } = this.props;
 		return (
 			<ul className="b-todo-list">
 				{todos.map(todo =>
@@ -28,3 +32,5 @@ export class TodoList extends React.Component<Props> {
 		);
 	}
 }
+
+export { TodoList, TYPE };

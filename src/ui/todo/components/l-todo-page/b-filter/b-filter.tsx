@@ -1,29 +1,37 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
-import { Link } from '../../../../common/b-link/b-link';
+import { provideComponent, getComponent } from '../../../../../provide';
+import { TYPE as LINK_TYPE } from '../../../../common/b-link/b-link';
 import './b-filter.css';
 
-export interface Props {
+interface Props {
     active?: Boolean;
     children?: JSX.Element | String;
     onClick?: () => void;
 }
 
-export class Filter extends React.Component<Props> {
-	public render(): JSX.Element {
-		let className = this.classes.join(' ');
-		let { active, children } = this.props;
+const TYPE: symbol = Symbol('Filter');
 
-		return (
-			<div className={className}>
-				{active
-					? <span>{children}</span>
-					: <Link onClick={this.onClick}>{children}</Link>}
-			</div>
-		);
+@provideComponent(TYPE)
+class Filter extends React.Component<Props> {
+	public constructor(props?: Props, context?: any) {
+		super(props, context);
 	}
 
-	protected get classes(): string[] {
+	public render(): JSX.Element {
+		let className = this.getClasses().join(' ');
+		return <div className={className}>{this.renderContent()}</div>;
+	}
+
+	protected renderContent(): JSX.Element {
+		const Link = getComponent(LINK_TYPE);
+		const { active, children } = this.props;
+		return active
+			? <span>{children}</span>
+			: <Link onClick={this.onClick}>{children}</Link>;
+	}
+
+	protected getClasses(): string[] {
 		let classes = ['b-filter'];
 
 		if (this.props.active) {
@@ -34,7 +42,9 @@ export class Filter extends React.Component<Props> {
 	}
 
 	@autobind
-	protected onClick() {
+	protected onClick(): void {
 		this.props.onClick();
 	}
 }
+
+export { Props, TYPE, Filter };

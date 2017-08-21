@@ -1,5 +1,6 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
+import { provideComponent } from '../../../../../provide';
 import './b-todo-item.css';
 
 export interface Props {
@@ -8,11 +9,14 @@ export interface Props {
 	text: string;
 }
 
-export class TodoItem extends React.Component<Props> {
+const TYPE: symbol = Symbol('TodoItem');
+
+@provideComponent(TYPE)
+class TodoItem extends React.Component<Props> {
 	public render(): JSX.Element {
 		let text = this.props.text;
 		let className = this.classes.join(' ');
-
+		
 		return <li className={className} onClick={this.onClick}>{text}</li>;
 	}
 
@@ -31,3 +35,5 @@ export class TodoItem extends React.Component<Props> {
 		this.props.onClick();
 	}
 }
+
+export { TodoItem, TYPE };

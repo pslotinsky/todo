@@ -1,7 +1,6 @@
 {
   "name": "todos",
   "version": "0.0.1",
-  "private": true,
   "dependencies": {
     "@types/lodash": "^4.14.72",
     "@types/react": "^16.0.2",
@@ -11,6 +10,7 @@
     "@types/reselect": "^2.2.0",
     "@types/uuid": "^3.4.0",
     "autobind-decorator": "^2.1.0",
+    "inversify": "^4.3.0",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.5.0",
@@ -18,6 +18,7 @@
     "react-redux": "^5.0.5",
     "react-scripts-ts": "^2.5.0",
     "redux": "^3.5.2",
+    "reflect-metadata": "^0.1.10",
     "requiredir": "^1.0.7",
     "reselect": "^3.0.1",
     "typescript-fsa": "^2.4.0",
