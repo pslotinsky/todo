@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { TYPE as ITEM_TYPE } from '../b-todo-item/b-todo-item';
-import { provideComponent, getComponent } from '../../../../../provide';
+import { Container } from 'inversify';
+import { Type } from '../../../Type';
 
 export interface Props {
 	todos?: {
@@ -11,12 +11,14 @@ export interface Props {
 	onItemClick?: (id: string) => void;
 };
 
-const TYPE: symbol = Symbol('TodoList');
-
-@provideComponent(TYPE)
 class TodoList extends React.Component<Props> {
+	static get contextTypes() {
+		return { ioc: Container };
+	}
+
 	public render(): JSX.Element {
-		const TodoItem = getComponent(ITEM_TYPE);
+		const ioc: Container = this.context.ioc;
+		const TodoItem = ioc.get<any>(Type.TODO_ITEM);
 		let { todos, onItemClick } = this.props;
 		return (
 			<ul className="b-todo-list">
@@ -33,4 +35,4 @@ class TodoList extends React.Component<Props> {
 	}
 }
 
-export { TodoList, TYPE };
+export { TodoList };

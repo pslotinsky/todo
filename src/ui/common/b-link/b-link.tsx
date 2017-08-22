@@ -1,6 +1,5 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
-import { provideComponent } from '../../../provide';
 
 interface Props {
     children?: JSX.Element | String;
@@ -8,9 +7,6 @@ interface Props {
     href?: string;
 }
 
-const TYPE: symbol = Symbol('Link');
-
-@provideComponent(TYPE)
 class Link extends React.Component<Props> {
     public render(): JSX.Element {
         let href = this.props.href || '#';
@@ -31,4 +27,4 @@ class Link extends React.Component<Props> {
     }
 }
 
-export { Props, TYPE, Link };
+export { Props, Link };

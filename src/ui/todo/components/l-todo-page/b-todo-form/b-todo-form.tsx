@@ -1,14 +1,10 @@
 import * as React from 'react'
 import autobind from 'autobind-decorator';
-import { provideComponent } from '../../../../../provide';
 
 export interface Props {
 	onSubmit?: (text: string) => void;
 }
 
-const TYPE: symbol = Symbol('TodoForm');
-
-@provideComponent(TYPE)
 class TodoForm extends React.Component<Props> {
 	private input: HTMLInputElement;
 
@@ -46,4 +42,4 @@ class TodoForm extends React.Component<Props> {
 	}
 }
 
-export { TodoForm, TYPE };
+export { TodoForm };

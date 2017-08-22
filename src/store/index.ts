@@ -3,7 +3,7 @@ import todo from './todo/reducers';
 import { TodoStore } from './todo/types';
 
 export const reducer = combineReducers({
-  	todo
+    todo
 });
 
 export interface Store {

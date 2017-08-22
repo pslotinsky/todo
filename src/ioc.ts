@@ -1,27 +1,13 @@
-import { Container, interfaces } from 'inversify';
+import { Container } from 'inversify';
+import { iocModule as commonIocModule } from './ui/common/iocModule';
+import { iocModule as todoIocModule } from './ui/todo/iocModule';
+import { iocModule as todo2IocModule } from './ui/todo2/iocModule';
 
-class IocManager {
-    private ioc: Container = new Container();
+const ioc: Container = new Container();
+ioc.load(commonIocModule, todoIocModule);
 
-    merge(...args: Container[]) {
-        this.ioc = args.reduce((res: Container, cur: Container): Container => {
-            return <Container>Container.merge(res, cur);
-        }, this.ioc);
-    }
-
-    get(serviceId: interfaces.ServiceIdentifier<any>): any {
-        return this.ioc.get<any>(serviceId);
-    }
-
-    registerConstructor(
-        serviceId: interfaces.ServiceIdentifier<any>,
-        newable: interfaces.Newable<any>
-    ): void {
-        let from = this.ioc.isBound(serviceId)
-            ? this.ioc.rebind<interfaces.Newable<any>>(serviceId)
-            : this.ioc.bind<interfaces.Newable<any>>(serviceId);
-        from.toConstructor(newable);
-    }
+if (Math.random() >= 0.5) {
+    ioc.load(todo2IocModule);
 }
 
-export const ioc = new IocManager();
+export { ioc };

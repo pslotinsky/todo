@@ -1,6 +1,5 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
-import { provideComponent } from '../../../../../provide';
 import './b-todo-item.css';
 
 export interface Props {
@@ -9,9 +8,6 @@ export interface Props {
 	text: string;
 }
 
-const TYPE: symbol = Symbol('TodoItem');
-
-@provideComponent(TYPE)
 class TodoItem extends React.Component<Props> {
 	public render(): JSX.Element {
 		let text = this.props.text;
@@ -36,4 +32,4 @@ class TodoItem extends React.Component<Props> {
 	}
 }
 
-export { TodoItem, TYPE };
+export { TodoItem };

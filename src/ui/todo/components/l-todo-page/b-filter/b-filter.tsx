@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { Container } from 'inversify';
 import autobind from 'autobind-decorator';
-import { provideComponent, getComponent } from '../../../../../provide';
-import { TYPE as LINK_TYPE } from '../../../../common/b-link/b-link';
+import { Type } from '../../../../common/Type';
 import './b-filter.css';
 
 interface Props {
@@ -10,12 +10,9 @@ interface Props {
     onClick?: () => void;
 }
 
-const TYPE: symbol = Symbol('Filter');
-
-@provideComponent(TYPE)
 class Filter extends React.Component<Props> {
-	public constructor(props?: Props, context?: any) {
-		super(props, context);
+	static get contextTypes() {
+		return { ioc: Container };
 	}
 
 	public render(): JSX.Element {
@@ -24,7 +21,8 @@ class Filter extends React.Component<Props> {
 	}
 
 	protected renderContent(): JSX.Element {
-		const Link = getComponent(LINK_TYPE);
+		const ioc: Container = this.context.ioc;
+		const Link = ioc.get<any>(Type.LINK);
 		const { active, children } = this.props;
 		return active
 			? <span>{children}</span>
@@ -47,4 +45,4 @@ class Filter extends React.Component<Props> {
 	}
 }
 
-export { Props, TYPE, Filter };
+export { Props, Filter };

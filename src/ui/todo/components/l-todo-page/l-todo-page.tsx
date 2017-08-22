@@ -1,18 +1,26 @@
 import * as React from 'react';
-import { TYPE as FORM_TYPE } from '../../containers/b-todo-form';
-import { TYPE as LIST_TYPE } from '../../containers/b-todo-list';
-import { TYPE as FILTERS_TYPE } from './b-filters/b-filters';
-import { provideComponent, getComponent } from '../../../../provide';
+import { Container } from 'inversify';
+import { Type } from '../../Type';
 import './l-todo-page.css';
 
-const TYPE: symbol = Symbol('TodoPage');
+interface Props {
+    ioc?: Container;
+}
 
-@provideComponent(TYPE)
-class TodoPage extends React.Component {
+class TodoPage extends React.Component<Props> {
+	static get childContextTypes() {
+		return { ioc: Container };
+	}
+
+	getChildContext(): Props {
+		return { ioc: this.props.ioc };
+	}
+
 	public render(): JSX.Element {
-		const TodoFormContainer = getComponent(FORM_TYPE);
-		const TodoListContainer = getComponent(LIST_TYPE);
-		const Filters = getComponent(FILTERS_TYPE);
+		const ioc = this.props.ioc;
+		const TodoFormContainer = ioc.get<any>(Type.TODO_FORM_CONTAINER);
+		const TodoListContainer = ioc.get<any>(Type.TODO_LIST_CONTAINER);
+		const Filters = ioc.get<any>(Type.FILTERS);
 		return (
 			<div className="l-todo-page">
 				<TodoFormContainer />
@@ -23,4 +31,4 @@ class TodoPage extends React.Component {
 	}
 }
 
-export { TodoPage, TYPE };
+export { TodoPage };

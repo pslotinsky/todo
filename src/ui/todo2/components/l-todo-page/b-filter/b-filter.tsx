@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { Filter, TYPE } from
+import { Filter } from
     '../../../../todo/components/l-todo-page/b-filter/b-filter';
-import { provideComponent } from '../../../../../provide';
 
-@provideComponent(TYPE)
 class Filter2 extends Filter {
     /** @override */
     protected renderContent(): JSX.Element {
@@ -27,4 +25,4 @@ class Filter2 extends Filter {
     }
 }
 
-export { Filter2, TYPE };
+export { Filter2 };

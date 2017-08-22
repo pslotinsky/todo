@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { FilterEnum, TYPE as FILTER_TYPE } from '../../../containers/b-filter';
-import { provideComponent, getComponent } from '../../../../../provide';
+import { Container } from 'inversify';
+import { FilterEnum } from '../../../containers/b-filter';
+import { Type } from '../../../Type';
 
-const TYPE: symbol = Symbol('Filters');
-
-@provideComponent(TYPE)
 class Filters extends React.Component {
+	static get contextTypes() {
+		return { ioc: Container };
+	}
+
 	public render(): JSX.Element {
-		const FilterContainer = getComponent(FILTER_TYPE);
+		const ioc: Container = this.context.ioc;
+		const FilterContainer = ioc.get<any>(Type.FILTER_CONTAINER);
 		return (
 			<div className="b-filters">
 				Show:
@@ -28,4 +31,4 @@ class Filters extends React.Component {
 	}
 }
 
-export { Filters, TYPE };
+export { Filters };
