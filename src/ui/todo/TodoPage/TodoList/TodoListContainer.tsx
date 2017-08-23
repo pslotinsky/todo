@@ -1,10 +1,9 @@
 import { connect, Dispatch } from 'react-redux';
 import { bindActionCreators as bind } from 'redux';
-import * as actions from '../../../store/todo/actions';
-import { Props } from
-	'../components/l-todo-page/b-todo-list/b-todo-list';
-import { getVisibleTodos } from '../../../store/todo/selectors';
-import { Store } from '../../../store';
+import * as actions from '../../../../store/todo/actions';
+import { Props } from './TodoList';
+import { getVisibleTodos } from '../../../../store/todo/selectors';
+import { Store } from '../../../../store';
 
 const TodoListDecorator = connect(mapStateToProps, mapDispatchToProps);
 

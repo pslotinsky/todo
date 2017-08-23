@@ -1,6 +1,6 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
-import './b-todo-item.css';
+import './TodoItem.css';
 
 export interface Props {
 	onClick?: () => void;
@@ -17,10 +17,10 @@ class TodoItem extends React.Component<Props> {
 	}
 
 	protected get classes(): string[] {
-		let res = ['b-todo-item'];
+		let res = ['TodoItem'];
 
 		if (this.props.completed) {
-			res.push('b-todo-item_completed');
+			res.push('TodoItem_completed');
 		}
 
 		return res;

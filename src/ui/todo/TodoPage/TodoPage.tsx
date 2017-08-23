@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Container } from 'inversify';
-import { Type } from '../../Type';
+import { Type } from '../Type';
 import {
 	NewableTodoFormContainer,
 	NewableTodoListContainer,
 	NewableFilters
-} from '../../iocModule';
-import './l-todo-page.css';
+} from '../iocModule';
+import './TodoPage.css';
 
 interface Props {
     ioc?: Container;
@@ -30,7 +30,7 @@ class TodoPage extends React.Component<Props> {
 		const Filters =
 			ioc.get<NewableFilters>(Type.FILTERS);
 		return (
-			<div className="l-todo-page">
+			<div className="TodoPage">
 				<TodoFormContainer />
 				<TodoListContainer />
 				<Filters />

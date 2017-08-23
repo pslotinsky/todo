@@ -3,7 +3,7 @@ import { Container } from 'inversify';
 import autobind from 'autobind-decorator';
 import { Type } from '../../../../common/Type';
 import { NewableLink } from '../../../../common/iocModule';
-import './b-filter.css';
+import './Filter.css';
 
 interface Props {
     active?: Boolean;
@@ -31,10 +31,10 @@ class Filter extends React.Component<Props> {
 	}
 
 	protected getClasses(): string[] {
-		let classes = ['b-filter'];
+		let classes = ['Filter'];
 
 		if (this.props.active) {
-			classes.push('b-filter_active');
+			classes.push('Filter_active');
 		}
 
 		return classes;

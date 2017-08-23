@@ -1,11 +1,10 @@
 import { connect, Dispatch } from 'react-redux';
 import { bindActionCreators as bind } from 'redux';
-import { Props as FilterProps } from
-    '../components/l-todo-page/b-filter/b-filter';
-import { Store } from '../../../store';
-import { Filter as FilterEnum } from '../../../store/todo/types';
-import * as actions from '../../../store/todo/actions';
-import { getVisibilityFilter } from '../../../store/todo/selectors';
+import { Props as FilterProps } from './Filter';
+import { Store } from '../../../../../store';
+import { Filter as FilterEnum } from '../../../../../store/todo/types';
+import * as actions from '../../../../../store/todo/actions';
+import { getVisibilityFilter } from '../../../../../store/todo/selectors';
 
 interface Props extends FilterProps {
     filter?: FilterEnum;

@@ -12,7 +12,7 @@ class Link extends React.Component<Props> {
         let href = this.props.href || '#';
         let children = this.props.children || '';
         return (
-            <a className="b-link" href={href} onClick={this.onClick}>
+            <a className="Link" href={href} onClick={this.onClick}>
                 {children}
             </a>
         );

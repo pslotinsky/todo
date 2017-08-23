@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Container } from 'inversify';
-import { FilterEnum } from '../../../containers/b-filter';
-import { Type } from '../../../Type';
-import { NewableFilterContainer } from '../../../iocModule';
+import { FilterEnum } from './Filter/FilterContainer';
+import { Type } from '../../Type';
+import { NewableFilterContainer } from '../../iocModule';
 
 class Filters extends React.Component {
 	static get contextTypes() {
@@ -14,7 +14,7 @@ class Filters extends React.Component {
 		const FilterContainer =
 			ioc.get<NewableFilterContainer>(Type.FILTER_CONTAINER);
 		return (
-			<div className="b-filters">
+			<div className="Filters">
 				Show:
 				{" "}
 				<FilterContainer filter={FilterEnum.SHOW_ALL}>

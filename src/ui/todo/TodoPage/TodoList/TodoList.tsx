@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Container } from 'inversify';
-import { Type } from '../../../Type';
-import { NewableTodoItem } from '../../../iocModule';
+import { Type } from '../../Type';
+import { NewableTodoItem } from '../../iocModule';
 
 export interface Props {
 	todos?: {
@@ -22,7 +22,7 @@ class TodoList extends React.Component<Props> {
 		const TodoItem = ioc.get<NewableTodoItem>(Type.TODO_ITEM);
 		let { todos, onItemClick } = this.props;
 		return (
-			<ul className="b-todo-list">
+			<ul className="TodoList">
 				{todos.map(todo =>
 					<TodoItem
 						key={todo.id}

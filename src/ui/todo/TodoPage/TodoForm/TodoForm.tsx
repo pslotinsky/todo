@@ -10,12 +10,15 @@ class TodoForm extends React.Component<Props> {
 
 	public render(): JSX.Element {
 		return (
-			<div className="b-todo-form">
-				<form onSubmit={this.onSubmit}>
-					<input ref={node => this.input = node} />
-					<button type="submit">Add Todo</button>
-				</form> 
-			</div>
+			<form className="TodoForm" onSubmit={this.onSubmit}>
+				<input
+					className="TodoForm__input"
+					ref={node => this.input = node}
+				/>
+				<button className="TodoForm__submit" type="submit">
+					Add Todo
+				</button>
+			</form> 
 		);
 	}
 

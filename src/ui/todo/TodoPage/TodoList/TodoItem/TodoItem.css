@@ -1,7 +1,7 @@
-.b-todo-item {
+.TodoItem {
     cursor: pointer;
 }
 
-.b-todo-item_completed {
+.TodoItem_completed {
     text-decoration: line-through;
 }

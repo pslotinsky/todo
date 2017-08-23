@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Filter } from
-    '../../../../todo/components/l-todo-page/b-filter/b-filter';
+    '../../../../todo/TodoPage/Filters/Filter/Filter';
 
 class Filter2 extends Filter {
     /** @override */
@@ -21,7 +21,7 @@ class Filter2 extends Filter {
     /** @override */
     protected getClasses(): string[] {
         let res = super.getClasses();
-        return [...res, 'b-filter_2'];
+        return [...res, 'Filter_2'];
     }
 }
 

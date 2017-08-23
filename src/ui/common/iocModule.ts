@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { ContainerModule, interfaces } from 'inversify';
 import { Type } from './Type';
-import { Link, Props as LinkProps } from './b-link/b-link';
+import { Link, Props as LinkProps } from './Link/Link';
 
 type Newable<T> = interfaces.Newable<T>;
 

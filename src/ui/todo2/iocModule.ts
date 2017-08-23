@@ -1,8 +1,9 @@
 import { ContainerModule, interfaces } from 'inversify';
 import { Type } from '../todo/Type';
 import { NewableFiter } from '../todo/iocModule';
-import { FilterDecorator } from '../todo/containers/b-filter';
-import { Filter2 } from './components/l-todo-page/b-filter/b-filter';
+import { FilterDecorator } from
+    '../todo/TodoPage/Filters/Filter/FilterContainer';
+import { Filter2 } from './TodoPage/Filters/Filter/Filter';
 
 export const iocModule: ContainerModule = new ContainerModule(
     (
