@@ -1,9 +1,14 @@
+import { Component } from 'react';
 import { ContainerModule, interfaces } from 'inversify';
 import { Type } from './Type';
-import { Link } from './b-link/b-link';
+import { Link, Props as LinkProps } from './b-link/b-link';
+
+type Newable<T> = interfaces.Newable<T>;
+
+export type NewableLink = Newable<Component<LinkProps>>;
 
 export const iocModule: ContainerModule = new ContainerModule(
     (bind: interfaces.Bind) => {
-        bind<Link>(Type.LINK).toConstructor(Link);
+        bind<NewableLink>(Type.LINK).toConstructor(Link);
     }
 );

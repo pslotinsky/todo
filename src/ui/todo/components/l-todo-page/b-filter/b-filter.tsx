@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Container } from 'inversify';
 import autobind from 'autobind-decorator';
 import { Type } from '../../../../common/Type';
+import { NewableLink } from '../../../../common/iocModule';
 import './b-filter.css';
 
 interface Props {
@@ -22,7 +23,7 @@ class Filter extends React.Component<Props> {
 
 	protected renderContent(): JSX.Element {
 		const ioc: Container = this.context.ioc;
-		const Link = ioc.get<any>(Type.LINK);
+		const Link = ioc.get<NewableLink>(Type.LINK);
 		const { active, children } = this.props;
 		return active
 			? <span>{children}</span>

@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { Container } from 'inversify';
 import { Type } from '../../Type';
+import {
+	NewableTodoFormContainer,
+	NewableTodoListContainer,
+	NewableFilters
+} from '../../iocModule';
 import './l-todo-page.css';
 
 interface Props {
@@ -18,9 +23,12 @@ class TodoPage extends React.Component<Props> {
 
 	public render(): JSX.Element {
 		const ioc = this.props.ioc;
-		const TodoFormContainer = ioc.get<any>(Type.TODO_FORM_CONTAINER);
-		const TodoListContainer = ioc.get<any>(Type.TODO_LIST_CONTAINER);
-		const Filters = ioc.get<any>(Type.FILTERS);
+		const TodoFormContainer =
+			ioc.get<NewableTodoFormContainer>(Type.TODO_FORM_CONTAINER);
+		const TodoListContainer =
+			ioc.get<NewableTodoListContainer>(Type.TODO_LIST_CONTAINER);
+		const Filters =
+			ioc.get<NewableFilters>(Type.FILTERS);
 		return (
 			<div className="l-todo-page">
 				<TodoFormContainer />
