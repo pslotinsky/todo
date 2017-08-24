@@ -3,7 +3,7 @@ import { Container } from 'inversify';
 import autobind from 'autobind-decorator';
 import { Type } from '../../../../common/Type';
 import { NewableLink } from '../../../../common/iocModule';
-import './Filter.css';
+// import './Filter.css';
 
 interface Props {
     active?: Boolean;

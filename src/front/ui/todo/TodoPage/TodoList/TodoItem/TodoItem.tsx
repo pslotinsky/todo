@@ -1,6 +1,6 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
-import './TodoItem.css';
+// import './TodoItem.css';
 
 export interface Props {
 	onClick?: () => void;

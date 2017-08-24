@@ -2,7 +2,8 @@
 node_modules
 
 # production
-build
+public
+dist
 
 # misc
 npm-debug.log
