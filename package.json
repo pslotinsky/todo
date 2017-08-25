@@ -20,6 +20,8 @@
     "browserify": "^14.4.0",
     "express": "^4.15.4",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.1.0",
     "gulp-sequence": "^0.4.6",
     "gulp-typescript": "^3.2.2",
     "gulp-util": "^3.0.8",
@@ -42,6 +44,6 @@
     "webpack": "^3.5.5"
   },
   "scripts": {
-    "start": "gulp bundle && node dist/frontik/app.js"
+    "start": "gulp && node dist/frontik/app.js"
   }
 }

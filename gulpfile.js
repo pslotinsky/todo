@@ -1,6 +1,8 @@
 'use strict';
 
 var gulp        = require('gulp'),
+    sass        = require('gulp-sass'),
+    concat      = require('gulp-concat'),
     typescript  = require('typescript'),
     ts          = require('gulp-typescript'),
     browserify  = require('browserify'),
@@ -9,6 +11,15 @@ var gulp        = require('gulp'),
 
 var project = ts.createProject('./tsconfig.json', {
     typescript: typescript
+});
+
+gulp.task('default', ['sass', 'bundle']);
+
+gulp.task('sass', () => {
+    return gulp.src('./src/**/*.scss')
+        .pipe(sass({outputStyle: 'compressed'}))
+        .pipe(concat('./styles.css'))
+        .pipe(gulp.dest('./public'));
 });
 
 gulp.task('compile', function() {
@@ -20,7 +31,7 @@ gulp.task('compile', function() {
 });
 
 gulp.task('bundle', ['compile'], function() {
-    return  browserify('dist/front/client.js')
+    return browserify('dist/front/client.js')
         .transform(babelify.configure({
             presets: ["es2015"]
         }))
