@@ -15,7 +15,7 @@ import { FilterDecorator, Props as FilterContainerProps } from
     './TodoPage/Filters/Filter/FilterContainer';
 import { TodoFormDecorator } from
     './TodoPage/TodoForm/TodoFormContainer';
-import { TodoListDecorator } from
+import { ConnectedTodoList, ContainerProps } from
     './TodoPage/TodoList/TodoListContainer';
 
 type Newable<T> = interfaces.Newable<T>;
@@ -27,7 +27,7 @@ export type NewableTodoItem = Newable<Component<TodoItemProps>>;
 export type NewableTodoList = Newable<Component<TodoListProps>>;
 export type NewableFilterContainer = Newable<Component<FilterContainerProps>>;
 export type NewableTodoFormContainer = Newable<Component>;
-export type NewableTodoListContainer = Newable<Component>;
+export type NewableTodoListContainer = Newable<Component<ContainerProps>>;
 
 export const iocModule: ContainerModule = new ContainerModule(
     (bind: interfaces.Bind) => {
@@ -37,15 +37,14 @@ export const iocModule: ContainerModule = new ContainerModule(
         bind<NewableTodoItem>(Type.TODO_ITEM).toConstructor(TodoItem);
         bind<NewableTodoList>(Type.TODO_LIST).toConstructor(TodoList);
 
-        const FilterContainer = FilterDecorator(Filter);
-        const TodoFormContainer = TodoFormDecorator(TodoForm);
-        const TodoListContainer = TodoListDecorator(TodoList);
-        
+        const ConnectedFilter = FilterDecorator(Filter);
+        const ConnectedTodoForm = TodoFormDecorator(TodoForm);
+
         bind<NewableFilterContainer>(Type.FILTER_CONTAINER)
-            .toConstructor(FilterContainer);
+            .toConstructor(ConnectedFilter);
         bind<NewableTodoFormContainer>(Type.TODO_FORM_CONTAINER)
-            .toConstructor(TodoFormContainer);
+            .toConstructor(ConnectedTodoForm);
         bind<NewableTodoListContainer>(Type.TODO_LIST_CONTAINER)
-            .toConstructor(TodoListContainer);
+            .toConstructor(ConnectedTodoList);
     }
 );

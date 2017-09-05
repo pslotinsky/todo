@@ -2,8 +2,8 @@ import { createSelector } from 'reselect';
 import { Todo, Filter } from '../types';
 import { Store } from '../../';
 
-const todosSelector = (state: Store): Todo[] => state.todo.todos;
-const visibilityFilterSelector = (state: Store): Filter =>
+export const todosSelector = (state: Store): Todo[] => state.todo.todos;
+export const visibilityFilterSelector = (state: Store): Filter =>
     state.todo.visibilityFilter;
 
 export const getVisibleTodos = createSelector(

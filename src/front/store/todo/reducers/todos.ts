@@ -1,11 +1,12 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { v4 as uuid } from 'uuid';
-import { addTodo, toggleTodo } from '../actions';
+import { addTodo, toggleTodo, loadTodos } from '../actions';
 import { Todo } from '../types';
 
 const reducer = reducerWithInitialState([])
 	.case(addTodo, addTodoHandler)
-	.case(toggleTodo, toggleTodoHandler);
+	.case(toggleTodo, toggleTodoHandler)
+	.case(loadTodos, loadTodosHandler);
 
 
 function addTodoHandler(state: Todo[], text: string) {
@@ -19,6 +20,10 @@ function toggleTodoHandler(state: Todo[], id: string) {
 			? { ...todo, completed: !todo.completed }
 			: todo
 	));
+}
+
+function loadTodosHandler(state: Todo[], todos: Todo[]) {
+	return [...state, ...todos];
 }
 
 export default reducer;

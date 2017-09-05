@@ -13,7 +13,7 @@ var project = ts.createProject('./tsconfig.json', {
     typescript: typescript
 });
 
-gulp.task('default', ['sass', 'bundle']);
+gulp.task('default', ['sass', 'bundle', 'watch']);
 
 gulp.task('sass', () => {
     return gulp.src('./src/**/*.scss')
@@ -33,9 +33,13 @@ gulp.task('compile', function() {
 gulp.task('bundle', ['compile'], function() {
     return browserify('dist/front/client.js')
         .transform(babelify.configure({
-            presets: ["es2015"]
+            presets: ['es2015', 'stage-0']
         }))
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(gulp.dest('public'));
+});
+
+gulp.task('watch', () => {
+    gulp.watch('src/**/*.ts', ['bundle']);
 });
