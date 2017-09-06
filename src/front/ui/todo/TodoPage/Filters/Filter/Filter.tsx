@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { Container } from 'inversify';
 import autobind from 'autobind-decorator';
-import { Type } from '../../../../common/Type';
-import { NewableLink } from '../../../../common/iocModule';
-// import './Filter.css';
+import { inject } from '../../../../../ioc';
+import { ILink } from '../../../../common/Link/Link';
 
-interface Props {
+interface FilterProps {
     active?: Boolean;
     children?: JSX.Element | String;
     onClick?: () => void;
 }
 
-class Filter extends React.Component<Props> {
-	static get contextTypes() {
-		return { ioc: Container };
-	}
+interface IFilter extends React.Component<FilterProps> {
+}
+
+class Filter extends React.Component<FilterProps> implements IFilter {
+	@inject('ILink')
+	private Link: new () => ILink;
 
 	public render(): JSX.Element {
 		let className = this.getClasses().join(' ');
@@ -22,8 +22,7 @@ class Filter extends React.Component<Props> {
 	}
 
 	protected renderContent(): JSX.Element {
-		const ioc: Container = this.context.ioc;
-		const Link = ioc.get<NewableLink>(Type.LINK);
+		const { Link } = this;
 		const { active, children } = this.props;
 		return active
 			? <span>{children}</span>
@@ -46,4 +45,4 @@ class Filter extends React.Component<Props> {
 	}
 }
 
-export { Props, Filter };
+export { FilterProps, IFilter, Filter };

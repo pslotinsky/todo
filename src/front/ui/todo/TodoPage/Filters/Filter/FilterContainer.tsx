@@ -1,6 +1,6 @@
 import { connect, Dispatch } from 'react-redux';
 import { bindActionCreators as bind } from 'redux';
-import { Props as FilterProps } from './Filter';
+import { FilterProps } from './Filter';
 import { Store } from '../../../../../store';
 import { Filter as FilterEnum } from '../../../../../store/todo/types';
 import * as actions from '../../../../../store/todo/actions';

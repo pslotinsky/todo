@@ -1,13 +1,16 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
 
-interface Props {
+interface LinkProps {
     children?: JSX.Element | String;
     onClick?: () => void;
     href?: string;
 }
 
-class Link extends React.Component<Props> {
+interface ILink extends React.Component<LinkProps> {
+}
+
+class Link extends React.Component<LinkProps> implements ILink {
     public render(): JSX.Element {
         let href = this.props.href || '#';
         let children = this.props.children || '';
@@ -27,4 +30,4 @@ class Link extends React.Component<Props> {
     }
 }
 
-export { Props, Link };
+export { LinkProps, ILink, Link };

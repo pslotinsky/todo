@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { ContainerModule, interfaces } from 'inversify';
 import { Type } from './Type';
-import { Filter, Props as FilterProps } from
+import { Filter, FilterProps } from
     './TodoPage/Filters/Filter/Filter';
 import { Filters } from
     './TodoPage/Filters/Filters';

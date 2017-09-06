@@ -18,7 +18,9 @@ interface ContainerProps {
 class TodoListContainer extends React.Component<ContainerProps> {
     async componentDidMount(): Promise<void> {
         let todoService = new TodoService();
+        console.time('load todods');
         let todos = await todoService.getList();
+        console.timeEnd('load todods');
         this.props.loadTodos(todos);
     }
 
