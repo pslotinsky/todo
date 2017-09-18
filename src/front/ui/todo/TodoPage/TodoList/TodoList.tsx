@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Container } from 'inversify';
-import { Type } from '../../Type';
-import { NewableTodoItem } from '../../iocModule';
+// import { Type } from '../../Type';
+// import { NewableTodoItem } from '../../iocModule';
+import { ConnectedTodoItem } from './TodoItem/TodoItemContainer';
 
 export interface Props {
 	todos?: {
@@ -18,16 +19,15 @@ class TodoList extends React.Component<Props> {
 	}
 
 	public render(): JSX.Element {
-		const ioc: Container = this.context.ioc;
-		const TodoItem = ioc.get<NewableTodoItem>(Type.TODO_ITEM);
+		// const ioc: Container = this.context.ioc;
+		// const TodoItem = ioc.get<NewableTodoItem>(Type.TODO_ITEM);
 		let { todos, onItemClick } = this.props;
 		return (
 			<ul className="TodoList">
 				{todos.map(todo =>
-					<TodoItem
+					<ConnectedTodoItem
+						{...todo}
 						key={todo.id}
-						text={todo.text}
-						completed={todo.completed}
 						onClick={() => onItemClick(todo.id)}
 					/>
 				)}

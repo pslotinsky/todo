@@ -1,7 +1,7 @@
 import { connect, Dispatch } from 'react-redux';
 import { bindActionCreators as bind } from 'redux';
 import { FilterProps } from './Filter';
-import { Store } from '../../../../../store';
+import { State } from '../../../../../store';
 import { Filter as FilterEnum } from '../../../../../store/todo/types';
 import * as actions from '../../../../../store/todo/actions';
 import { getVisibilityFilter } from '../../../../../store/todo/selectors';
@@ -12,7 +12,7 @@ interface Props extends FilterProps {
 
 const FilterDecorator = connect(mapStateToProps, mapDispatchToProps);
 
-function mapStateToProps(state: Store, ownProps: Props): Props {
+function mapStateToProps(state: State, ownProps: Props): Props {
     return {
         active: (ownProps.filter == getVisibilityFilter(state))
     };

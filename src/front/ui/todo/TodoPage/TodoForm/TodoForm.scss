@@ -1,0 +1,17 @@
+.TodoForm {
+    position: relative;
+
+    padding-right: 100px;
+}
+
+.TodoForm__input {
+    width: 100%;
+}
+
+.TodoForm__submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 100px;
+}

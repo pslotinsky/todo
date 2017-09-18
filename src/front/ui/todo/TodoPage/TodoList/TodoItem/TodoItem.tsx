@@ -1,19 +1,28 @@
 import * as React from 'react';
 import autobind from 'autobind-decorator';
-// import './TodoItem.css';
 
 export interface Props {
-	onClick?: () => void;
+	id?: string;
+	text?: string;
 	completed?: boolean;
-	text: string;
+	color?: string;
+	onClick?: () => void;
 }
 
 class TodoItem extends React.Component<Props> {
 	public render(): JSX.Element {
-		let text = this.props.text;
 		let className = this.classes.join(' ');
+		let { text, color } = this.props;
 		
-		return <li className={className} onClick={this.onClick}>{text}</li>;
+		return (
+			<li
+				className={className}
+				onClick={this.onClick}
+				style={{backgroundColor: color || 'none'}}
+			>
+				{text}
+			</li>
+		);
 	}
 
 	protected get classes(): string[] {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { Container } from 'inversify';
 import { Type } from '../Type';
 import {
@@ -9,16 +10,23 @@ import {
 // import './TodoPage.css';
 
 interface Props {
-    ioc?: Container;
+	ioc?: Container;
+	appGuid?: string;
 }
 
 class TodoPage extends React.Component<Props> {
 	static get childContextTypes() {
-		return { ioc: Container };
+		return {
+			ioc: Container,
+			appGuid: PropTypes.string
+		};
 	}
 
 	getChildContext(): Props {
-		return { ioc: this.props.ioc };
+		return {
+			ioc: this.props.ioc,
+			appGuid: this.props.appGuid
+		};
 	}
 
 	public render(): JSX.Element {

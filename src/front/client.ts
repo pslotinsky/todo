@@ -1,5 +1,8 @@
 import { render } from 'react-dom';
-import { root as element } from './root';
+import { create as createStore } from './store';
+import { createApp } from './app';
 
+let store = createStore();
+let app = createApp(store);
 const root: HTMLElement = document.getElementById('root');
-render(element, root);
+render(app, root);

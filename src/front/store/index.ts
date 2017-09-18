@@ -1,13 +1,17 @@
-import { combineReducers } from 'redux';
+import { combineReducers, createStore, Store } from 'redux';
 import todo from './todo/reducers';
 import app from './app/reducers/index';
-import { TodoStore } from './todo/types';
+import { TodoState } from './todo/types';
 
-export const reducer = combineReducers({
-    todo,
-    app
-});
+export interface State {
+    todo?: TodoState;
+    app?: any;
+}
 
-export interface Store {
-    todo: TodoStore
+export function create(): Store<State> {
+    const reducer = combineReducers({
+        todo,
+        app
+    });
+    return createStore(reducer);
 }

@@ -2,12 +2,12 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../../../store/todo/actions';
-import { Props } from './TodoList';
+import { Props, TodoList } from './TodoList';
 import { getVisibleTodos } from '../../../../store/todo/selectors';
-import { Store } from '../../../../store';
+import { State } from '../../../../store';
 import { Todo } from '../../../../store/todo/types';
-import { TodoList } from './TodoList';
 import { TodoService } from '../../../../store/todo/services/TodoService';
+import { withContext } from '../../../../lib/decorators';
 
 interface ContainerProps {
     todos?: Todo[];
@@ -15,12 +15,11 @@ interface ContainerProps {
     toggleTodo?: (id: string) => void;
 }
 
+@withContext
 class TodoListContainer extends React.Component<ContainerProps> {
-    async componentDidMount(): Promise<void> {
-        let todoService = new TodoService();
-        console.time('load todods');
+    async componentWillMount(): Promise<void> {
+        let todoService = new TodoService(this.context.appGuid);
         let todos = await todoService.getList();
-        console.timeEnd('load todods');
         this.props.loadTodos(todos);
     }
 
@@ -38,7 +37,7 @@ class TodoListContainer extends React.Component<ContainerProps> {
 const ConnectedTodoList =
     connect(mapStateToProps, mapDispatchToProps)(TodoListContainer);
 
-function mapStateToProps(state: Store): Props {
+function mapStateToProps(state: State): Props {
 	return { todos: getVisibleTodos(state) };
 };
 

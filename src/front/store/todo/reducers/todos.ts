@@ -1,20 +1,32 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { v4 as uuid } from 'uuid';
-import { addTodo, toggleTodo, loadTodos } from '../actions';
+import { uniqBy } from 'lodash';
 import { Todo } from '../types';
+import {
+	addTodo,
+	toggleTodo,
+	loadTodos,
+	setColor,
+	SetColorPayload
+} from '../actions';
 
-const reducer = reducerWithInitialState([])
+const initialState: Todo[] = (typeof window != 'undefined')
+	? window['__STATE__'].todo.todos
+	: [];
+
+const reducer = reducerWithInitialState(initialState)
 	.case(addTodo, addTodoHandler)
 	.case(toggleTodo, toggleTodoHandler)
-	.case(loadTodos, loadTodosHandler);
+	.case(loadTodos, loadTodosHandler)
+	.case(setColor, setColorHandler);
 
 
-function addTodoHandler(state: Todo[], text: string) {
+function addTodoHandler(state: Todo[], text: string): Todo[] {
 	let todo: Todo = { id: uuid(), text };
-	return [...state, todo];
+	return uniqBy([...state, todo], 'id');
 }
 
-function toggleTodoHandler(state: Todo[], id: string) {
+function toggleTodoHandler(state: Todo[], id: string): Todo[] {
 	return state.map((todo) => (
 		(todo.id == id)
 			? { ...todo, completed: !todo.completed }
@@ -22,8 +34,13 @@ function toggleTodoHandler(state: Todo[], id: string) {
 	));
 }
 
-function loadTodosHandler(state: Todo[], todos: Todo[]) {
-	return [...state, ...todos];
+function loadTodosHandler(state: Todo[], todos: Todo[]): Todo[] {
+	return uniqBy([...state, ...todos], 'id');
+}
+
+function setColorHandler(state: Todo[], data: SetColorPayload): Todo[] {
+	let { id, color } = data;
+	return state.map(todo => (todo.id == id) ? {...todo, color} : todo);
 }
 
 export default reducer;

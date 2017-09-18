@@ -2,6 +2,7 @@ export interface Todo {
     id?: string;
     text: string;
     completed?: boolean;
+    color?: string;
 }
 
 export enum Filter {
@@ -10,7 +11,7 @@ export enum Filter {
     SHOW_ACTIVE = 'SHOW_ACTIVE'
 }
 
-export interface TodoStore {
+export interface TodoState {
     todos: Todo[];
     visibilityFilter: Filter;
 }

@@ -41,5 +41,6 @@ gulp.task('bundle', ['compile'], function() {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('src/**/*.ts', ['bundle']);
+    gulp.watch(['src/**/*.ts', 'src/**/*.tsx'], ['bundle']);
+    gulp.watch(['src/**/*.scss'], ['sass']);
 });
