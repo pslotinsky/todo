@@ -1,9 +1,5 @@
-# dependencies
-node_modules
+*/node_modules
+*/public
+*/dist
 
-# production
-public
-dist
-
-# misc
-npm-debug.log
+*/npm-debug.log

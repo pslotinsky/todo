@@ -1,0 +1,16 @@
+.b-todo {
+    cursor: pointer;
+}
+
+.b-todo_done {
+    text-decoration: line-through;
+    color: #a3a3a3;
+}
+
+.b-todo-list_filter_done .b-todo:not(.b-todo_done) {
+    display: none;
+}
+
+.b-todo-list_filter_undone .b-todo_done {
+    display: none;
+}
